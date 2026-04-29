@@ -1,5 +1,4 @@
 .env
-output/*.json
 checkpoint.db
 __pycache__/
 *.pyc

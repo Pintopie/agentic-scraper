@@ -1,0 +1,287 @@
+[
+  {
+    "product_name": "DentalProX VeraGraft&trade; Dental Powder",
+    "brand": "Safco Dental",
+    "sku": "PFWVG",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/dentalprox-veragraft-trade-dental-powder",
+    "price": "28.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfwvg.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100160Z"
+  },
+  {
+    "product_name": "Disposable scalpels - Bard-Parker (BD)",
+    "brand": "Safco Dental",
+    "sku": "PFLUG",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/disposable-scalpels-bard-parker-bd",
+    "price": "18.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflug.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.101488Z"
+  },
+  {
+    "product_name": "Disposable scalpels - Integra Miltex",
+    "brand": "Safco Dental",
+    "sku": "PFLUN",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/disposable-scalpels-integra-miltex",
+    "price": "19.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflun.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.101140Z"
+  },
+  {
+    "product_name": "Feather&reg;&nbsp;Microsurgical Blades",
+    "brand": "Safco Dental",
+    "sku": "PFLVV",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/feather-sup-reg-nbsp-sup-microsurgical-blades",
+    "price": "89.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflvv.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100904Z"
+  },
+  {
+    "product_name": "Myco Medical Technocut&reg; Disposable Scalpels",
+    "brand": "Safco Dental",
+    "sku": "PFLXA",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/myco-medical-technocut-reg-disposable-scalpels",
+    "price": "8.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflxa.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.099952Z"
+  },
+  {
+    "product_name": "Myco Medical&nbsp;GLASSVAN&reg; Scalpel Blades",
+    "brand": "Safco Dental",
+    "sku": "PFLWR",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/myco-medical-nbsp-glassvan-reg-scalpel-blades",
+    "price": "24.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflwr.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100244Z"
+  },
+  {
+    "product_name": "Ossify&reg; Cortical Bone Sheet",
+    "brand": "Safco Dental",
+    "sku": "PFWRG",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/ossify-sup-reg-sup-cortical-bone-sheet",
+    "price": "149.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfwrg.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.101074Z"
+  },
+  {
+    "product_name": "Ossify&reg; DBM Cortical Fiber Bone Graft",
+    "brand": "Safco Dental",
+    "sku": "PFWRF",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/ossify-sup-reg-sup-dbm-cortical-fiber-bone-graft",
+    "price": "121.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfwrf.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.101388Z"
+  },
+  {
+    "product_name": "R.T.R. Membrane",
+    "brand": "Safco Dental",
+    "sku": "PFWRX",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/r-t-r-membrane",
+    "price": "108.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfwrx.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100318Z"
+  },
+  {
+    "product_name": "R.T.R.+ Syringe",
+    "brand": "Safco Dental",
+    "sku": "PFWRU",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/r-t-r-syringe",
+    "price": "152.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfwru.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100605Z"
+  },
+  {
+    "product_name": "Regenafill&trade; Bone Graft Plug",
+    "brand": "Safco Dental",
+    "sku": "PFWRL",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/regenafill-sup-trade-sup-bone-graft-plug",
+    "price": "259.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfwrl.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100790Z"
+  },
+  {
+    "product_name": "Safety Scalpels",
+    "brand": "Safco Dental",
+    "sku": "PFLVZ",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/safety-scalpels",
+    "price": "38.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflvz.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100710Z"
+  },
+  {
+    "product_name": "Soft Tissue Trimmer",
+    "brand": "Safco Dental",
+    "sku": "PFLWH",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/soft-tissue-trimmer",
+    "price": "139.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pflwh.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100399Z"
+  },
+  {
+    "product_name": "Surgicel&reg;",
+    "brand": "Safco Dental",
+    "sku": "PFPHJ",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/surgicel-reg",
+    "price": "1118.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfphj.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.101216Z"
+  },
+  {
+    "product_name": "Surgifoam&reg;",
+    "brand": "Safco Dental",
+    "sku": "PFPJK",
+    "category_hierarchy": [],
+    "category": "sutures",
+    "product_url": "https://www.safcodental.com/product/surgifoam-reg",
+    "price": "214.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": "Sterile, water insoluble, malleable porcine gelatin absorbable sponge, intended for hemostatic use by applying to a bleeding surface.",
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/p/f/pfpjk.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:13:57.100987Z"
+  }
+]

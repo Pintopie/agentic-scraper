@@ -1,0 +1,287 @@
+[
+  {
+    "product_name": "Alasta Pro",
+    "brand": "Safco Dental",
+    "sku": "DRCDK",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/alasta-pro",
+    "price": "23.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": "Make glove changes faster and easier with Alasta® PRO nitrile dental exam gloves, featuring innovative Glide Assist™ technology that helps you slide into gloves effortlessly — even with damp hands. Designed for dental professionals, the Soft Fit™ formulation provides a comfortable, form-fitting feel that enhances dexterity during procedures.\r\nThe professional medical blue color offers a clean, clinical look that complements any operatory setting. Alasta® PRO gloves are fentanyl-tested and chemo-approved, ensuring trusted protection for use in high-risk or clinical dental environments.\r\nEach box contains 200 premium nitrile gloves, offering exceptional value and efficiency for busy dental practices.",
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdk.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.737832Z"
+  },
+  {
+    "product_name": "Bio Nitrile",
+    "brand": "Safco Dental",
+    "sku": "DRCDG",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/bio-nitrile-sup-reg-sup",
+    "price": "23.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdg.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738578Z"
+  },
+  {
+    "product_name": "Black Maxx",
+    "brand": "Safco Dental",
+    "sku": "DRCDI",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/black-maxx-sup-reg-sup",
+    "price": "24.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdi.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738369Z"
+  },
+  {
+    "product_name": "Carbon Air",
+    "brand": "Safco Dental",
+    "sku": "DRCCY",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/carbon-reg-air",
+    "price": "23.79",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drccy_2.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.739350Z"
+  },
+  {
+    "product_name": "Compac Nitrile",
+    "brand": "Safco Dental",
+    "sku": "DRCDM",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/compac-nitrile",
+    "price": "8.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": "The unique polybag storage design provides up to 2x greater packing efficiency compared to traditional glove boxes, helping optimize space in clinical environments. A secure single-glove dispensing system supports faster and more efficient patient care preparation, while the cuff-first dispensing method helps reduce cross-contamination by up to 89% and minimizes unnecessary touch points.",
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/c/r/cranberry_drcdm_4710154.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.737514Z"
+  },
+  {
+    "product_name": "Crave",
+    "brand": "Safco Dental",
+    "sku": "DRCCA",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/crave-trade",
+    "price": "19.49",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcca_2.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.737710Z"
+  },
+  {
+    "product_name": "GloveUp",
+    "brand": "Safco Dental",
+    "sku": "DRCDH",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/gloveup-sup-reg-sup",
+    "price": "30.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdh.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738469Z"
+  },
+  {
+    "product_name": "Halyard Black Nitrile",
+    "brand": "Safco Dental",
+    "sku": "DRCDL",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/halyard-black-nitrile",
+    "price": "8.29",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": "HALYARD* Black Nitrile Exam Gloves deliver dependable protection and professional performance for dental professionals. Perfect for clinical and hygiene procedures, these nitrile gloves provide excellent tactile sensitivity and a secure grip with textured fingertips for confident instrument handling. The sleek black color conceals stains, maintaining a clean, modern look in any dental setting. Each box contains 100 gloves in a SMARTPULL* Dispenser designed to reduce waste, improve efficiency, and save valuable operatory space.",
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdl.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738051Z"
+  },
+  {
+    "product_name": "Micro-Touch NitraFree Blue",
+    "brand": "Safco Dental",
+    "sku": "DRCCZ",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/micro-touch-reg-nitrafree-trade-blue",
+    "price": "19.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drccz.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.739244Z"
+  },
+  {
+    "product_name": "Micro-Touch NitraFree Pink",
+    "brand": "Safco Dental",
+    "sku": "DRCDA",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/micro-touch-reg-nitrafree-trade-pink",
+    "price": "15.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcda.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.739156Z"
+  },
+  {
+    "product_name": "Microflex MidKnight Touch",
+    "brand": "Safco Dental",
+    "sku": "DRCDB",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/microflex-reg-midknight-trade-touch",
+    "price": "8.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdb.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.739060Z"
+  },
+  {
+    "product_name": "PowerForm Black",
+    "brand": "Safco Dental",
+    "sku": "DRCDD",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/powerform-black",
+    "price": "15.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdd.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738750Z"
+  },
+  {
+    "product_name": "Quantum Blue",
+    "brand": "Safco Dental",
+    "sku": "DRCDE",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/quantum-blue",
+    "price": "8.59",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcde.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738671Z"
+  },
+  {
+    "product_name": "Safco Nitrilex Soothe",
+    "brand": "Safco Dental",
+    "sku": "DRCDJ",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/safco-nitrilex-soothe",
+    "price": "15.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdj.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738233Z"
+  },
+  {
+    "product_name": "TrueForm",
+    "brand": "Safco Dental",
+    "sku": "DRCDC",
+    "category_hierarchy": [],
+    "category": "gloves",
+    "product_url": "https://www.safcodental.com/product/trueform",
+    "price": "12.99",
+    "unit_pack_size": null,
+    "availability": "In Stock",
+    "description": null,
+    "specifications": {},
+    "image_urls": [
+      "https://www.safcodental.com/media/catalog/product/d/r/drcdc.jpg?width=265&height=265&canvas=265,265&optimize=medium&fit=bounds"
+    ],
+    "alternative_products": [],
+    "extraction_method": "api_intercept",
+    "scraped_at": "2026-04-29T18:15:56.738965Z"
+  }
+]
