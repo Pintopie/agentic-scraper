@@ -1,0 +1,24 @@
+categories:
+  - name: sutures
+    url: https://www.safcodental.com/catalog/sutures-surgical-products
+  - name: gloves
+    url: https://www.safcodental.com/catalog/gloves
+
+scraper:
+  concurrency: 2
+  request_delay: 1.5
+  max_pages: 8
+  max_products_per_category: 10
+  timeout_ms: 30000
+  headless: true
+
+extractor:
+  llm_fallback_threshold: 0.5
+
+retry:
+  max_attempts: 3
+  base_delay: 2.0
+
+output:
+  dir: output/
+  checkpoint_db: checkpoint.db

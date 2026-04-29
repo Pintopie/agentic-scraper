@@ -1,0 +1,9 @@
+.env
+output/*.json
+checkpoint.db
+__pycache__/
+*.pyc
+.pytest_cache/
+.playwright/
+.venv/
+*.egg-info/
