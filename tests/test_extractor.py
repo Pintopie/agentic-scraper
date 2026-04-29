@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
+from unittest.mock import AsyncMock, MagicMock, patch
+
 import pytest
 
 from agents.extractor import ExtractorAgent
 from config.settings import ExtractorConfig, LLMConfig
+from models.product import Product
 from utils.retry import RetryManager
 
 
@@ -126,3 +130,78 @@ async def test_extract_from_html_skips_catalog_url(sample_product_html, extracto
     )
 
     assert product is None
+
+
+@pytest.mark.asyncio
+async def test_enrich_with_llm_fills_missing_fields():
+    # LLM enrichment fires when unit_pack_size/specifications/category_hierarchy are absent
+    # but a description is present — verifies the agentic enrichment path.
+    extractor = ExtractorAgent(
+        ExtractorConfig(llm_fallback_threshold=0.5),
+        LLMConfig(api_key="test-key"),
+        RetryManager(max_attempts=1, base_delay=0),
+    )
+    product = Product(
+        product_name="Alasta Pro Nitrile Gloves",
+        brand="Safco Dental",
+        sku="DRCDK",
+        category="gloves",
+        product_url="https://www.safcodental.com/product/alasta-pro",
+        description="Each box contains 200 premium nitrile gloves. Fentanyl-tested and chemo-approved.",
+        extraction_method="api_intercept",
+        scraped_at=datetime.now(timezone.utc),
+    )
+    mock_response = MagicMock()
+    mock_response.content = (
+        '{"unit_pack_size": "200/box", '
+        '"specifications": {"Material": "Nitrile", "Certifications": "Fentanyl-tested"}, '
+        '"category_hierarchy": ["Gloves", "Nitrile Exam Gloves"]}'
+    )
+    with patch.object(extractor, "_llm", create=True, new=MagicMock()):
+        extractor._llm.ainvoke = AsyncMock(return_value=mock_response)
+        enriched = await extractor.enrich_with_llm(product)
+
+    assert enriched.unit_pack_size == "200/box"
+    assert enriched.specifications == {"Material": "Nitrile", "Certifications": "Fentanyl-tested"}
+    assert enriched.category_hierarchy == ["Gloves", "Nitrile Exam Gloves"]
+    assert enriched.extraction_method == "api_intercept"  # method unchanged after enrichment
+
+
+@pytest.mark.asyncio
+async def test_enrich_with_llm_skips_when_no_description():
+    extractor = ExtractorAgent(
+        ExtractorConfig(llm_fallback_threshold=0.5),
+        LLMConfig(api_key="test-key"),
+        RetryManager(max_attempts=1, base_delay=0),
+    )
+    product = Product(
+        product_name="Mystery Glove",
+        sku="MG-001",
+        category="gloves",
+        product_url="https://www.safcodental.com/product/mystery-glove",
+        extraction_method="api_intercept",
+        scraped_at=datetime.now(timezone.utc),
+    )
+    with patch.object(extractor, "_llm", create=True, new=MagicMock()) as mock_llm:
+        mock_llm.ainvoke = AsyncMock()
+        enriched = await extractor.enrich_with_llm(product)
+        mock_llm.ainvoke.assert_not_called()
+
+    assert enriched is product  # same object, no changes
+
+
+@pytest.mark.asyncio
+async def test_enrich_with_llm_skips_when_llm_disabled(extractor):
+    # extractor fixture has api_key=None so LLM is disabled
+    product = Product(
+        product_name="Glove A",
+        sku="G-A",
+        category="gloves",
+        product_url="https://www.safcodental.com/product/glove-a",
+        description="Box of 100 nitrile gloves.",
+        extraction_method="api_intercept",
+        scraped_at=datetime.now(timezone.utc),
+    )
+    enriched = await extractor.enrich_with_llm(product)
+
+    assert enriched is product  # no-op pass-through

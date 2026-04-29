@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from typing import Dict, List, Literal, Optional
+from typing import Dict, List, Literal, Optional, Set
 from urllib.parse import urlparse
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -25,9 +25,15 @@ class ClassificationResult:
 
 
 class PageClassifierAgent:
-    def __init__(self, llm_config: LLMConfig, retry_manager: RetryManager) -> None:
+    def __init__(
+        self,
+        llm_config: LLMConfig,
+        retry_manager: RetryManager,
+        allowed_domains: Optional[Set[str]] = None,
+    ) -> None:
         self.llm_config = llm_config
         self.retry_manager = retry_manager
+        self._allowed_domains = allowed_domains
         self.logger = get_logger("classifier")
         self._llm: Optional[ChatOpenAI] = None
         self._llm_disabled_reason: Optional[str] = None
@@ -87,7 +93,7 @@ class PageClassifierAgent:
         lowered_url = url.lower()
         lowered_html = html.lower()
 
-        if "safcodental.com" not in lowered_url:
+        if self._allowed_domains and not any(d in lowered_url for d in self._allowed_domains):
             return ClassificationResult("irrelevant", "off-domain URL")
 
         # Catalog URLs are known category listings even if the DOM contains product-like text.
@@ -143,7 +149,10 @@ class PageClassifierAgent:
         return ClassificationResult(
             "unknown",
             "no strong deterministic page markers",
-            should_follow="safcodental.com" in lowered_url,
+            should_follow=(
+                not self._allowed_domains
+                or any(d in lowered_url for d in self._allowed_domains)
+            ),
         )
 
     async def select_product_links(
@@ -191,7 +200,7 @@ class PageClassifierAgent:
             href = candidate.get("href", "")
             text = candidate.get("text", "")
             class_name = candidate.get("class", "")
-            if not self._looks_like_product_link(href, text, class_name):
+            if not self._looks_like_product_link(href, text, class_name, self._allowed_domains):
                 continue
             if href not in seen:
                 seen.add(href)
@@ -199,12 +208,17 @@ class PageClassifierAgent:
         return links
 
     @staticmethod
-    def _looks_like_product_link(href: str, text: str, class_name: str = "") -> bool:
+    def _looks_like_product_link(
+        href: str,
+        text: str,
+        class_name: str = "",
+        allowed_domains: Optional[Set[str]] = None,
+    ) -> bool:
         parsed = urlparse(href)
         path = parsed.path.lower()
         lowered_text = text.lower().strip()
         lowered_class = class_name.lower()
-        if not href or parsed.netloc != "www.safcodental.com":
+        if not href or (allowed_domains and parsed.netloc not in allowed_domains):
             return False
         if any(
             blocked in path
@@ -257,7 +271,7 @@ class PageClassifierAgent:
         async def invoke() -> List[str]:
             # The prompt is intentionally strict: only return detail URLs, never categories or chrome.
             prompt = (
-                "You are selecting product detail URLs from a Safco Dental category page. "
+                "You are selecting product detail URLs from a product category page. "
                 "Return strict JSON with key product_urls as an array. Choose only links "
                 "that likely open individual product detail pages, not categories, account, "
                 "cart, marketing, image, or tracking links."
@@ -288,7 +302,7 @@ class PageClassifierAgent:
         @self.retry_manager.async_retry()
         async def invoke() -> ClassificationResult:
             prompt = (
-                "Classify this Safco Dental page. Return strict JSON with keys "
+                "Classify this e-commerce page. Return strict JSON with keys "
                 "page_type, reason, should_follow. page_type must be one of "
                 "category_listing, product_detail, unknown, irrelevant."
             )

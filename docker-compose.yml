@@ -3,14 +3,15 @@ services:
     build: .
     volumes:
       - ./output:/app/output
-      - ./checkpoint.db:/app/checkpoint.db
     env_file: .env
+    environment:
+      - RUNNING_IN_DOCKER=1
     command: python main.py --config config.yaml
 
   viewer:
     image: coleifer/sqlite-web
     volumes:
-      - ./checkpoint.db:/data/checkpoint.db
+      - ./output/checkpoint.db:/data/checkpoint.db
     ports:
       - "8080:8080"
     profiles:

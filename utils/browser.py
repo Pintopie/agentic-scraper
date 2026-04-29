@@ -1,8 +1,13 @@
 from __future__ import annotations
 
+import os
 from typing import Optional
 
 from playwright.async_api import Browser, async_playwright
+
+# Chromium requires --no-sandbox when running as root inside Docker containers.
+# Detected via the RUNNING_IN_DOCKER env var set in docker-compose, or by checking UID.
+_IN_CONTAINER = os.getenv("RUNNING_IN_DOCKER") == "1" or os.getuid() == 0
 
 
 class BrowserSession:
@@ -14,7 +19,10 @@ class BrowserSession:
 
     async def __aenter__(self) -> Browser:
         self._playwright = await async_playwright().start()
-        self.browser = await self._playwright.chromium.launch(headless=self.headless)
+        args = ["--no-sandbox", "--disable-setuid-sandbox"] if _IN_CONTAINER else []
+        self.browser = await self._playwright.chromium.launch(
+            headless=self.headless, args=args
+        )
         return self.browser
 
     async def __aexit__(self, exc_type, exc, tb) -> None:

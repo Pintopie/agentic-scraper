@@ -13,7 +13,7 @@ def test_load_settings_resolves_paths(monkeypatch):
 
     assert settings.categories[0].name == "sutures"
     assert settings.output.dir == Path.cwd() / "output"
-    assert settings.output.checkpoint_db == Path.cwd() / "checkpoint.db"
+    assert settings.output.checkpoint_db == Path.cwd() / "output" / "checkpoint.db"
 
 
 def test_load_settings_accepts_nvidia_api_key_alias(monkeypatch):

@@ -21,9 +21,12 @@ class OrchestratorAgent:
             base_delay=settings.retry.base_delay,
         )
         self.checkpoint = CheckpointStore(settings.output.checkpoint_db)
-        self.classifier = PageClassifierAgent(settings.llm, self.retry_manager)
+        allowed_domains = settings.allowed_domains
+        self.classifier = PageClassifierAgent(
+            settings.llm, self.retry_manager, allowed_domains
+        )
         self.extractor = ExtractorAgent(
-            settings.extractor, settings.llm, self.retry_manager
+            settings.extractor, settings.llm, self.retry_manager, allowed_domains
         )
         self.validator = ValidatorAgent(self.checkpoint, settings.output.dir)
         self.navigator = NavigatorAgent(
@@ -33,6 +36,7 @@ class OrchestratorAgent:
             self.classifier,
             self.extractor,
             self.validator,
+            allowed_domains,
         )
 
     async def run(self) -> None:

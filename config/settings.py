@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Set
+from urllib.parse import urlparse
 
 import yaml
 from dotenv import load_dotenv
@@ -56,6 +57,19 @@ class Settings(BaseModel):
     output: OutputConfig = Field(default_factory=OutputConfig)
     llm: LLMConfig = Field(default_factory=LLMConfig)
     project_root: Path
+
+    @property
+    def allowed_domains(self) -> Set[str]:
+        """All netloc variants (with and without www) derived from category URLs."""
+        domains: Set[str] = set()
+        for cat in self.categories:
+            netloc = urlparse(cat.url).netloc
+            if netloc:
+                domains.add(netloc)
+                bare = netloc.removeprefix("www.")
+                domains.add(bare)
+                domains.add(f"www.{bare}")
+        return domains
 
 
 def _resolve_path(path: Path, root: Path) -> Path:

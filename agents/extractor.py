@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import re
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Set
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
@@ -22,10 +22,12 @@ class ExtractorAgent:
         extractor_config: ExtractorConfig,
         llm_config: LLMConfig,
         retry_manager: RetryManager,
+        allowed_domains: Optional[Set[str]] = None,
     ) -> None:
         self.extractor_config = extractor_config
         self.llm_config = llm_config
         self.retry_manager = retry_manager
+        self._allowed_domains = allowed_domains
         self.logger = get_logger("extractor")
         self._llm: Optional[ChatOpenAI] = None
         self._llm_disabled_reason: Optional[str] = None
@@ -591,6 +593,81 @@ class ExtractorAgent:
             self._llm_disabled_reason = str(exc)
             return None
 
+    async def enrich_with_llm(self, product: Product) -> Product:
+        """Fill missing structured fields (unit_pack_size, specifications, category_hierarchy)
+        by asking the LLM to parse the product's description text.
+
+        Only fires when the LLM is enabled, the product has a description, and at least one
+        structured field is absent — so it never burns tokens on already-complete records.
+        """
+        if not self.llm:
+            return product
+        missing = [
+            f
+            for f in ("unit_pack_size", "specifications", "category_hierarchy")
+            if not getattr(product, f)
+        ]
+        if not missing or not product.description:
+            return product
+
+        self.logger.info(
+            "llm_enrichment_start",
+            url=product.product_url,
+            sku=product.sku,
+            missing_fields=missing,
+        )
+
+        @self.retry_manager.async_retry()
+        async def invoke() -> Product:
+            prompt = (
+                "Extract structured product attributes from the description below. "
+                "Return strict JSON with exactly these keys: "
+                "unit_pack_size (string or null, e.g. '100/box', '200 count'), "
+                "specifications (object of key:value pairs covering material, size, color, "
+                "certifications, and other explicit product properties), "
+                "category_hierarchy (array from general to specific, "
+                "e.g. ['Gloves', 'Nitrile Exam Gloves']). "
+                "Only include values explicitly stated. Return null or [] for unknown fields. "
+                "Do not invent data."
+            )
+            context = (
+                f"Product: {product.product_name}\n"
+                f"Brand: {product.brand or 'unknown'}\n"
+                f"Description: {product.description}"
+            )
+            response = await self.llm.ainvoke(
+                [SystemMessage(content=prompt), HumanMessage(content=context)]
+            )
+            payload = self._parse_json(response.content)
+            updates: Dict[str, Any] = {}
+            if not product.unit_pack_size and payload.get("unit_pack_size"):
+                updates["unit_pack_size"] = str(payload["unit_pack_size"])
+            if not product.specifications and payload.get("specifications"):
+                updates["specifications"] = self._coerce_specs(payload["specifications"])
+            if not product.category_hierarchy and isinstance(
+                payload.get("category_hierarchy"), list
+            ):
+                updates["category_hierarchy"] = [
+                    str(c) for c in payload["category_hierarchy"] if c
+                ]
+            if updates:
+                self.logger.info(
+                    "llm_enrichment_complete",
+                    url=product.product_url,
+                    sku=product.sku,
+                    enriched_fields=list(updates.keys()),
+                )
+                return product.model_copy(update=updates)
+            return product
+
+        try:
+            return await invoke()
+        except Exception as exc:
+            self.logger.warning(
+                "llm_enrichment_failed", url=product.product_url, error=str(exc)
+            )
+            return product
+
     def _product_candidates(self, payload: Any) -> Iterable[Dict[str, Any]]:
         if isinstance(payload, dict):
             if self._looks_like_product(payload):
@@ -786,7 +863,9 @@ class ExtractorAgent:
     def _clean_meta_title(value: Optional[str]) -> Optional[str]:
         if not value:
             return None
-        return re.sub(r"\s*\|\s*Safco.*$", "", value).strip()
+        # Strip trailing "| Site Name" suffixes common in <title> tags.
+        # Only strips the last segment when it starts with a capital letter (brand name pattern).
+        return re.sub(r"\s*\|\s*[A-Z][^|]*$", "", value).strip() or value.strip()
 
     @staticmethod
     def _regex_value(text: str, pattern: str) -> Optional[str]:
@@ -819,8 +898,7 @@ class ExtractorAgent:
                     specs[key.rstrip(":")] = value
         return specs
 
-    @staticmethod
-    def _image_urls(soup: BeautifulSoup, base_url: str) -> List[str]:
+    def _image_urls(self, soup: BeautifulSoup, base_url: str) -> List[str]:
         urls = []
         for node in soup.select("img"):
             source = node.get("src") or node.get("data-src") or node.get("data-lazy-src")
@@ -831,26 +909,24 @@ class ExtractorAgent:
             if "logo" in alt or "logo" in classes:
                 continue
             urls.append(urljoin(base_url, source))
-        return ExtractorAgent._filter_image_urls(urls)
+        return self._filter_image_urls(urls)
 
-    @staticmethod
-    def _filter_image_urls(urls: List[str]) -> List[str]:
+    def _filter_image_urls(self, urls: List[str]) -> List[str]:
         filtered: List[str] = []
         seen = set()
         for url in urls:
-            if not url or ExtractorAgent._is_noisy_image_url(url):
+            if not url or self._is_noisy_image_url(url):
                 continue
             if url not in seen:
                 seen.add(url)
                 filtered.append(url)
         return filtered
 
-    @staticmethod
-    def _is_noisy_image_url(url: str) -> bool:
+    def _is_noisy_image_url(self, url: str) -> bool:
         parsed = urlparse(url)
         lowered = url.lower()
         path = parsed.path.lower()
-        if parsed.netloc and parsed.netloc not in {"www.safcodental.com", "safcodental.com"}:
+        if parsed.netloc and self._allowed_domains and parsed.netloc not in self._allowed_domains:
             return True
         noisy_markers = [
             "facebook.com/tr",

@@ -21,4 +21,4 @@ retry:
 
 output:
   dir: output/
-  checkpoint_db: checkpoint.db
+  checkpoint_db: output/checkpoint.db

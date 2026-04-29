@@ -1,6 +1,6 @@
-# Playwright's suggested environment for Python: https://playwright.dev/python/docs/docker
-FROM mcr.microsoft.com/playwright/python:v1.44.0-jammy 
-
+# Playwright's official Python image — Chromium and all system deps are pre-installed.
+# https://playwright.dev/python/docs/docker
+FROM mcr.microsoft.com/playwright/python:v1.44.0-jammy
 
 WORKDIR /app
 

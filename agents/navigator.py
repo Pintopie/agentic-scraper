@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 import re
 from collections import deque
-from typing import Any, Deque, Dict, List, Set
+from typing import Any, Deque, Dict, List, Optional, Set
 from urllib.parse import urljoin, urlparse
 
 from playwright.async_api import (
@@ -33,6 +33,7 @@ class NavigatorAgent:
         classifier: PageClassifierAgent,
         extractor: ExtractorAgent,
         validator: ValidatorAgent,
+        allowed_domains: Optional[Set[str]] = None,
     ) -> None:
         self.config = scraper_config
         self.retry_manager = retry_manager
@@ -40,6 +41,7 @@ class NavigatorAgent:
         self.classifier = classifier
         self.extractor = extractor
         self.validator = validator
+        self._allowed_domains = allowed_domains
         self.logger = get_logger("navigator")
         self._semaphore = asyncio.Semaphore(scraper_config.concurrency)
 
@@ -153,7 +155,6 @@ class NavigatorAgent:
                     html_length=len(html),
                 )
 
-                inserted = self.validator.validate_many(intercepted_products)
                 links: List[str] = []
                 if intercepted_products:
                     self.logger.info(
@@ -162,6 +163,13 @@ class NavigatorAgent:
                         url=current_url,
                         count=len(intercepted_products),
                     )
+                    enriched = [
+                        await self.extractor.enrich_with_llm(p)
+                        for p in intercepted_products
+                    ]
+                    inserted = self.validator.validate_many(enriched)
+                else:
+                    inserted = 0
 
                 if classification.page_type == "product_detail":
                     # Detail pages are the normal extraction path after navigation.
@@ -402,10 +410,9 @@ class NavigatorAgent:
             return
         await route.continue_()
 
-    @staticmethod
-    def _is_candidate_json_response(url: str) -> bool:
+    def _is_candidate_json_response(self, url: str) -> bool:
         parsed = urlparse(url)
-        if parsed.netloc not in {"www.safcodental.com", "safcodental.com"}:
+        if self._allowed_domains and parsed.netloc not in self._allowed_domains:
             return False
         lowered = url.lower()
         blocked_markers = [
@@ -562,15 +569,15 @@ class NavigatorAgent:
             return False
         return True
 
-    @staticmethod
-    def _looks_product_or_catalog_link(url: str, text: str) -> bool:
+    def _looks_product_or_catalog_link(self, url: str, text: str) -> bool:
         lowered = url.lower()
         if any(skip in lowered for skip in ["mailto:", "tel:", "/cart", "/login"]):
             return False
         if any(part in lowered for part in ["/catalog/", "/product/", "/item/", "/p/"]):
             return True
         productish_text = bool(re.search(r"\b(glove|suture|needle|surgical|exam)\b", text))
-        return "safcodental.com" in lowered and productish_text
+        on_domain = not self._allowed_domains or any(d in lowered for d in self._allowed_domains)
+        return on_domain and productish_text
 
     @staticmethod
     def _can_skip_visited_url(url: str) -> bool:

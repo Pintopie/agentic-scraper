@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from datetime import datetime, timezone
 from typing import Dict, List, Literal, Optional
-
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
@@ -28,6 +26,8 @@ class Product(BaseModel):
     extraction_method: ExtractionMethod
     scraped_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+
+    # Data validation
     @field_validator("product_name", "category", "product_url")
     @classmethod
     def required_text(cls, value: str) -> str:
@@ -50,6 +50,6 @@ class Product(BaseModel):
         return deduped
 
     def dedup_key(self) -> str:
-        # SKU can be missing, so pair it with URL to keep the store stable and idempotent.
+        # SKU can be missing, so pair it with URL to keep the store stable and idempotent -> no duplicates from the same product page, but products without SKUs can still be captured
         sku_part = (self.sku or "").strip().lower()
         return f"{sku_part}|{self.product_url.strip().lower()}"
